@@ -20,17 +20,30 @@ function teamMenu(){
             {
                 type: "input",
                 name: "managerName",
-                message: "What is the team manager's name?"
-            },
-            {
-                type: "input",
-                name: "managerId",
-                message: "What is the team manager's Id?"
-            },
-            {
-                type: "input",
-                name: "managerEmail",
-                message: "What is the team manager's email?"
+                message: "What is the team manager's name?",
+                validate: (answer) => {
+                    if (answer !== '') {
+                        return true;
+                    }
+                    return 'Enter at least one character'
+                 }
+                },
+                {
+                    type: "input",
+                    name: "managerId",
+                    message: "What is the team manager's Id?"
+                },
+                {
+                    type: "input",
+                    name: "managerEmail",
+                    message: "What is the team manager's email?",
+                    validate: (answer) => {
+                        const passwrd = answer.match(/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/)
+                        if (passwrd) {
+                            return true;
+                        }
+                        return 'Enter a valid email'
+                     }
             },
             {
                 type: "input",
