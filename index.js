@@ -13,3 +13,16 @@ const render = require("./src/page-template.js");
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
+function teamMenu(){
+    function createManager() {
+        console.log("let's build out your team");
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "managerName",
+                message: "What is the team manager's name?"
+            },
+        ])
+        
+    }
+}
