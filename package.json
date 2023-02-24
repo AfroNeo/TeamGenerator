@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/AfroNeo/TeamGenerator#readme",
   "dependencies": {
-    "inquirer": "^9.1.4",
+    "inquirer": "^6.5.2",
     "jest": "^29.4.3"
   }
 }

@@ -41,7 +41,7 @@ function teamMenu(){
         ]).then(answers => {
             const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.officeNumber )
             teamMembers.push(manager);
-
+            createTeam();
         })
         
     }
@@ -71,6 +71,7 @@ function teamMenu(){
         ]).then(answers => {
         const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerGithub)
         teamMembers.push(engineer);
+        createTeam();
 
     })
         
@@ -81,27 +82,59 @@ function teamMenu(){
         inquirer.prompt([
             {
                 type: "input",
-                name: "engineerName",
-                message: "What is the Engineer's Name?"
+                name: "internName",
+                message: "What is the Intern's Name?"
             },
             {
                 type: "input",
-                name: "engineerId",
-                message: "What is the Engineer's Id?"
+                name: "internId",
+                message: "What is the Intern's Id?"
             },
             {
                 type: "input",
-                name: "engineerEmail",
-                message: "What is the Engineer's Email?"
+                name: "internEmail",
+                message: "What is the Intern's Email?"
             },
             {
                 type: "input",
-                name: "engineerGithub",
-                message: "What is the Engineer's GitHub username?"
+                name: "internSchool",
+                message: "What school did the intern graduate from?"
             }
-        ])
+        ]).then(answers => {
+            const intern = new Intern (answers.internName, answers.internId, answers.internEmail, answers.Internschool) 
+            teamMembers.push(intern);
+            createTeam();
+        })
+    }
+    function createTeam() {
+        inquirer.prompt([
+            {
+                type: "list",
+                name: "roleChoice",
+                message: "What type of team member would you like to add?",
+                choices: ['Engineer', 'Intern', 'None']
+            }
+        ]).then(userChoice => {
+            switch (userChoice.roleChoice) {
+                case "Engineer":
+                    addEngineer()
+                    break;
+                case "Intern":
+                    addIntern()
+                    break;            
+                default:
+                    buildTeam();
+            }
+        })
+        
     }
 
-
-
+    function buildTeam() {
+        if (!fs.existsSync(OUTPUT_DIR)) {
+            fs.mkdirSync(OUTPUT_DIR)
+          }
+        fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
+    };
+    createManager() 
 }
+teamMenu()
