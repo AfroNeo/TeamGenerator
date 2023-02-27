@@ -7,7 +7,7 @@
 * [Reference](#reference)
 
 ## Description
-The Team Generator application allows you to create quick and easy team profile accounts and generate them on to a HTML file for live server viewing.
+The Team Generator application allows you to create quick and easy team profile accounts and generate them on to a HTML page for live server viewing.
 
 ### For the Manager, we have included:
 * Manager's name
