@@ -53,6 +53,10 @@ In the terminal we initialize a new Node.js project by running 'npm init'. This 
 * Once the prompts in the command line have been completed the HTML page will generate and the user can view on live server and can sent a URL link to their team members for sharing.
 
 ## Reference
+Please use these screenshots are references:
+![screenshot of terminal, the command line with prompts and user answers as a demonstration](images/node-index.js-terminal-screenshot.PNG)
+
+![screenshot image of generated html page that was created from the terminal command line](images/html-generator-screenshot.PNG)
 
 
 
