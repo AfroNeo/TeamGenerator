@@ -13,7 +13,7 @@ const teamMembers = []
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
-function teamMenu(){
+function teamMenu() {
     function createManager() {
         console.log("let's build out your team");
         inquirer.prompt([
@@ -26,24 +26,24 @@ function teamMenu(){
                         return true;
                     }
                     return 'Enter at least one character'
-                 }
-                },
-                {
-                    type: "input",
-                    name: "managerId",
-                    message: "What is the team manager's Id?"
-                },
-                {
-                    type: "input",
-                    name: "managerEmail",
-                    message: "What is the team manager's email?",
-                    validate: (answer) => {
-                        const passwrd = answer.match(/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/)
-                        if (passwrd) {
-                            return true;
-                        }
-                        return 'Enter a valid email'
-                     }
+                }
+            },
+            {
+                type: "input",
+                name: "managerId",
+                message: "What is the team manager's Id?"
+            },
+            {
+                type: "input",
+                name: "managerEmail",
+                message: "What is the team manager's email?",
+                validate: (answer) => {
+                    const passwrd = answer.match(/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/)
+                    if (passwrd) {
+                        return true;
+                    }
+                    return 'Enter a valid email'
+                }
             },
             {
                 type: "input",
@@ -52,14 +52,14 @@ function teamMenu(){
             }
 
         ]).then(answers => {
-            const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.officeNumber )
+            const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.officeNumber)
             teamMembers.push(manager);
             createTeam();
         })
-        
+
     }
-    function addEngineer () {
-        inquirer.prompt ([
+    function addEngineer() {
+        inquirer.prompt([
             {
                 type: "input",
                 name: "engineerName",
@@ -73,24 +73,31 @@ function teamMenu(){
             {
                 type: "input",
                 name: "engineerEmail",
-                message: "What is the Engineer's Email?"
+                message: "What is the Engineer's Email?",
+                validate: (answer) => {
+                    const passwrd = answer.match(/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/)
+                    if (passwrd) {
+                        return true;
+                    }
+                    return 'Enter a valid email'
+                }
             },
             {
                 type: "input",
                 name: "engineerGithub",
                 message: "What is the Engineer's GitHub username?"
             }
-            
-        ]).then(answers => {
-        const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerGithub)
-        teamMembers.push(engineer);
-        createTeam();
 
-    })
-        
+        ]).then(answers => {
+            const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerGithub)
+            teamMembers.push(engineer);
+            createTeam();
+
+        })
+
     }
 
-    function addIntern (){
+    function addIntern() {
 
         inquirer.prompt([
             {
@@ -106,7 +113,14 @@ function teamMenu(){
             {
                 type: "input",
                 name: "internEmail",
-                message: "What is the Intern's Email?"
+                message: "What is the Intern's Email?",
+                validate: (answer) => {
+                    const passwrd = answer.match(/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/)
+                    if (passwrd) {
+                        return true;
+                    }
+                    return 'Enter a valid email'
+                }
             },
             {
                 type: "input",
@@ -114,7 +128,7 @@ function teamMenu(){
                 message: "What school did the intern graduate from?"
             }
         ]).then(answers => {
-            const intern = new Intern (answers.internName, answers.internId, answers.internEmail, answers.Internschool) 
+            const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.Internschool)
             teamMembers.push(intern);
             createTeam();
         })
@@ -134,20 +148,20 @@ function teamMenu(){
                     break;
                 case "Intern":
                     addIntern()
-                    break;            
+                    break;
                 default:
                     buildTeam();
             }
         })
-        
+
     }
 
     function buildTeam() {
         if (!fs.existsSync(OUTPUT_DIR)) {
             fs.mkdirSync(OUTPUT_DIR)
-          }
+        }
         fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
     };
-    createManager() 
+    createManager()
 }
 teamMenu()
