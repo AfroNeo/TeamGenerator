@@ -127,8 +127,9 @@ function teamMenu() {
                 name: "internSchool",
                 message: "What school did the intern graduate from?"
             }
+
         ]).then(answers => {
-            const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.Internschool)
+            const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool)
             teamMembers.push(intern);
             createTeam();
         })
